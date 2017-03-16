@@ -2,6 +2,9 @@ package sobhan.me.todo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+
+import com.ramotion.foldingcell.FoldingCell;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -9,5 +12,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Setting up the foldingCell for animation.
+        final FoldingCell fc = (FoldingCell) findViewById(R.id.folding_cell);
+        fc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fc.toggle(false);
+            }
+        });
     }
 }
