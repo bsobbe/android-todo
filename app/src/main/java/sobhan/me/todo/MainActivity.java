@@ -1,5 +1,6 @@
 package sobhan.me.todo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +43,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, EDIT_TODO_REQUEST_CODE);
             }
         });
+
+        try {
+            Scanner sc = new Scanner(openFileInput("Todo.txt"));
+            while (sc.hasNext()) {
+                String data = sc.nextLine();
+                arrayList.add(data);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public void newTodo(View v)
@@ -60,6 +76,22 @@ public class MainActivity extends AppCompatActivity {
             arrayList.add(position, content);
             arrayAdapter.notifyDataSetChanged();
         }
+    }
+
+
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        try {
+            PrintWriter pw = new PrintWriter(openFileOutput("Todo.txt", Context.MODE_PRIVATE));
+            for (String data : arrayList) {
+                pw.println(data);
+            }
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        finish();
     }
 
 }
