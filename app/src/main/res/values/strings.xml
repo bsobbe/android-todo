@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Todo</string>
     <string name="app_title">لیست کارهای شخصی</string>
+    <string name="add_todo_hint">کار خودتو وارد کن تا من بهت یادآوری کنم</string>
+    <string name="save_button">ذخیره کن</string>
 </resources>
