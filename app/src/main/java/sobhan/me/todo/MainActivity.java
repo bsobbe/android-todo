@@ -78,6 +78,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void onStop()
+    {
+        super.onStop();
+        try {
+            PrintWriter pw = new PrintWriter(openFileOutput("Todo.txt", Context.MODE_PRIVATE));
+            for (String data : arrayList) {
+                pw.println(data);
+            }
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void onBackPressed()
     {
