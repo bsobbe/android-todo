@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Todo</string>
+    <string name="app_title">لیست کارهای شخصی</string>
 </resources>
