@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -15,7 +16,9 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
+    int position;
     public final static int NEW_TODO_REQUEST_CODE = 1;
+    public final static int EDIT_TODO_REQUEST_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, EditTodo.class);
+                intent.putExtra("messageData", arrayList.get(position));
+                intent.putExtra("position", position);
+                startActivityForResult(intent, EDIT_TODO_REQUEST_CODE);
+            }
+        });
     }
 
     public void newTodo(View v)
@@ -39,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode ==  RESULT_OK) {
             String content = data.getStringExtra("content");
             arrayList.add(content);
+            arrayAdapter.notifyDataSetChanged();
+        } else if (requestCode == 2 && resultCode == RESULT_OK) {
+            String content = data.getStringExtra("content");
+            position = data.getIntExtra("position", -1);
+            arrayList.remove(position);
+            arrayList.add(position, content);
             arrayAdapter.notifyDataSetChanged();
         }
     }
