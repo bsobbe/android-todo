@@ -1,7 +1,9 @@
 package sobhan.me.todo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +43,31 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("messageData", arrayList.get(position));
                 intent.putExtra("position", position);
                 startActivityForResult(intent, EDIT_TODO_REQUEST_CODE);
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                alert.setTitle(R.string.delete_alert_title);
+                alert.setMessage(R.string.delete_alert_message);
+                alert.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        arrayList.remove(position);
+                        arrayAdapter.notifyDataSetChanged();
+                        dialog.dismiss();
+                    }
+                });
+                alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.show();
+                return true;
             }
         });
 
