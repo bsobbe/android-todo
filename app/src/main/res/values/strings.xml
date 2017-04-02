@@ -6,4 +6,5 @@
     <string name="delete_alert_message">آیا آیتم مورد نظر حذف شود؟</string>
     <string name="yes">بله</string>
     <string name="no">نه</string>
+    <string name="github">دانلود سورس برنامه از گیت هاب من</string>
 </resources>
