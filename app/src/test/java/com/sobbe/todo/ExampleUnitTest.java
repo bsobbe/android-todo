@@ -1,4 +1,4 @@
-package sobhan.me.todo;
+package com.sobbe.todo;
 
 import org.junit.Test;
 

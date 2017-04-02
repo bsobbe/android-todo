@@ -1,4 +1,4 @@
-package sobhan.me.todo;
+package com.sobbe.todo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

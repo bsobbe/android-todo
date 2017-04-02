@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sobhan.me.todo.AddTodo"
+    tools:context="com.sobbe.todo.AddTodo"
     android:orientation="vertical">
     
     <EditText
