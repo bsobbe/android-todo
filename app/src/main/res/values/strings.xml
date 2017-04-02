@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Todo</string>
+    <string name="app_name">لیست کارهای من</string>
     <string name="add_todo_hint">یادداشت خودتو وارد کن</string>
     <string name="save_button">ذخیره کن</string>
     <string name="delete_alert_title">حذف آیتم</string>
