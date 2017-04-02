@@ -3,6 +3,7 @@ package sobhan.me.todo;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -97,7 +98,10 @@ public class MainActivity extends AppCompatActivity {
     {
         switch (item.getItemId()) {
             case R.id.menu_about_me:
-                Toast.makeText(MainActivity.this, "about me", Toast.LENGTH_LONG).show();
+                String url = "https://github.com/bsobbe/android-todo";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
