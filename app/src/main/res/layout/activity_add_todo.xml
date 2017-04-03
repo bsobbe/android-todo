@@ -25,6 +25,7 @@
         android:layout_weight="1"
         android:onClick="saveTodo"
         android:hint="@string/save_button"
+        android:textColorHint="#fff"
         android:textSize="22sp" />
 
 </LinearLayout>
